@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="header :: header-css"/>
+</head>
+<body>
+
+<div th:replace="header :: header"/>
+
+<div class="container">
+
+    <div class="starter-template">
+        <h1>Doctor page</h1>
+
+        <h1 th:inline="text">Hello Doctor!</h1>
+
+        <table  border="1">
+           <thead>
+             <tr>
+       		<th>NAME</th>
+       		<th>EMAIL</th>
+       		<th>TELEPHONE</th>
+          <th>ADDRESS</th>
+          <th>ANALYSIS</th>
+             </tr>
+           </thead>
+           <tbody>
+             <tr th:each="doctor : ${ doctors }">
+
+       				<td th:text="${ doctor.name }"></td>
+       				<td th:text="${ doctor.email }"></td>
+       				<td th:text="${ doctor.telephone }"></td>
+       				<td th:text="${ doctor.address }"></td>
+              <td th1:text="${ doctor.analysis }">
+					<p th:each="analysis: ${ doctor.analysis  }">
+                    <span th:text="${analysis.pacient}"></span>
+                		<span th:text="${analysis.name}"></span>
+                		<span th:text="${analysis.result}"></span>
+            		</p>
+				</td>
+
+       	  </tr>
+           </tbody>
+         </table>
+
+
+        <form th:action="@{/home}" method="get">
+            <input type="submit" value="Sign Out"/>
+        </form>
+
+    </div>
+
+</div>
+<!-- /.container -->
+
+<div th:replace="footer :: footer"/>
+
+</body>
+</html>
