@@ -2,6 +2,15 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <div th:replace="header :: header-css"/>
+
+    <style>
+      body {
+        background-image:   url('https://preview.ibb.co/gmrCLo/doctor.jpg');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center right;
+      }
+    </style>
 </head>
 <body>
 
@@ -11,8 +20,29 @@
 
     <div class="starter-template">
         <h1>About page (No need login)</h1>
-        <p>An application where pacients can see their analysis results and doctors can add them</p>
+        <p>An application where pacients can see their analysis results and doctors can add them. Some of the analysis pacients can do here are:</p>
 
+
+        <table  border="1">
+           <thead>
+             <tr>
+       		<th>NAME</th>
+       		<th>TYPES</th>
+             </tr>
+           </thead>
+           <tbody>
+             <tr th:each="analysis : ${ analysisList }">
+
+       				<td th:text="${ analysis.name }"></td>
+              <td th1:text="${ analysis.types }">
+          <p th:each="type: ${ analysis.types  }">
+                    <span th:text="${type.type}"></span>
+                </p>
+        </td>
+
+       	  </tr>
+           </tbody>
+         </table>
     </div>
 
 </div>

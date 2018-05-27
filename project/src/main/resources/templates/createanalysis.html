@@ -1,0 +1,69 @@
+<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!-- Include the above in your HEAD tag ---------->
+
+  <style>
+      body {
+        background-image:   url('https://preview.ibb.co/gmrCLo/doctor.jpg');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: bottom;
+      }
+    </style>
+
+<div align="middle">
+
+    <h2>Create Analysis</h2>
+    <form enctype="multipart/form-data" method="POST">
+    <label>Analysis Name</label>
+    <input type="text" name="name" class="span3">
+    <label>Result</label>
+    <input type="text" name="result" class="span3">
+    <div class="form-group">
+        <label class="col-lg-3 control-label">Pacient</label>
+        <div class="col-lg-5">
+            <select class="form-control" id="pacient" name="pacient">
+              <tbody>
+               <tr th:each="p : ${ pacients }">
+                  <option><td th:text="${ p.name }"></td></option>
+              </tbody>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-lg-3 control-label">Doctor</label>
+        <div class="col-lg-5">
+            <select class="form-control" id="doctor" name="doctor">
+                <tbody>
+               <tr th:each="d : ${ doctors }">
+                  <option><td th:text="${ d.name }"></td></option>
+              </tbody>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-lg-3 control-label">Type</label>
+        <div class="col-lg-5">
+            <select class="form-control" id="type" name="type">
+               <tbody>
+               <tr th:each="t : ${ types }">
+                  <option><td th:text="${ t.type }"></td></option>
+              </tbody>
+            </select>
+        </div>
+    </div>
+    <br>
+     <form th:action="@{/loggeddoctor}" method="get">
+            <input type="submit" value="Create Analysis"/>
+        </form>
+    <div class="clearfix"></div>
+    </form>
+
+
+
+
+
+</div>

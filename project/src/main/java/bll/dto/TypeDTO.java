@@ -17,6 +17,10 @@ public class TypeDTO {
 		//this.analysis = a;
 	}
 	
+	public TypeDTO() {
+		super();
+	}
+
 	public TypeDTO(Type t) {
 		this.type = t.getType();
 	}

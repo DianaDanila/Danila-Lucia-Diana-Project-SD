@@ -1,8 +1,19 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Spring Boot Thymeleaf + Spring Security</title>
+    <title>DCCCS ANALYSIS</title>
     <link rel = "stylesheet" th:href="@{/css/asd.css}" href="../statis/asd.css">
+
+      <style>
+        body {
+          background-image:   url('https://preview.ibb.co/gmrCLo/doctor.jpg');
+          background-repeat: no-repeat;
+          background-attachment: fixed;
+          background-position: center right;
+          background-size: 800px 800px;
+        }
+      </style>
+
 
 </head>
 <body>
@@ -11,10 +22,10 @@
 
 <div class="container">
 
-        <h1>Spring Boot Web Thymeleaf + Spring Security</h1>
-        <h2>1. Visit <a th:href="@{doctor}">Doctor page (Spring Security protected, Need Doctor Role)</a></h2>
-        <h2>2. Visit <a th:href="@{/pacient}">Pacient page (Spring Security protected, Need Pacient Role)</a></h2>
-        <h2>3. Visit <a th:href="@{/about}">About page</a></h2>
+        <h1>DCCCS ANALYSIS</h1>
+        <h2>1.<a th:href="@{doctor}">Doctor page (Need Doctor Role)</a></h2>
+        <h2>2.<a th:href="@{/pacient}">Pacient page (Need Pacient Role)</a></h2>
+        <h2>3.<a th:href="@{/about}">About page</a></h2>
 </div>
 <!-- /.container -->
 

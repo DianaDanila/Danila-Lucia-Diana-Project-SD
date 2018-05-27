@@ -1,14 +1,17 @@
 package bll;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import bll.builder.DoctorBuilder;
 import bll.builder.DoctorDTOBuilder;
 import bll.dto.AnalysisDTO;
 import bll.dto.DoctorDTO;
+import dal.model.Analysis;
 import dal.model.Doctor;
 import dal.repositories.DoctorRepository;
 
@@ -30,6 +33,19 @@ public class DoctorBLL {
 				.build();
 		return dto;
 	}
+	
+	public DoctorDTO getByName(String name) {
+		Doctor d = drepo.findByName(name);
+		DoctorDTO dto = new DoctorDTOBuilder()
+				.name(d.getName())
+				.password(d.getPassword())
+				.email(d.getEmail())
+				.address(d.getAddress())
+				.analysis(d.getAnalysis().stream().map(AnalysisDTO::new).collect(Collectors.toList()))
+				.telephone(d.getTelephone())
+				.build();
+		return dto;
+	}
 
 	public boolean login(String name, String pass) {
 		Doctor d = drepo.findByNameAndPassword(name, pass);
@@ -40,7 +56,15 @@ public class DoctorBLL {
 	}
 	
 	public void insert(DoctorDTO d) {
-		Doctor doctor = drepo.findByName(d.getName());
+		//Doctor doctor = drepo.findByName(d.getName());
+		Doctor doctor = new DoctorBuilder()
+				.name(d.getName())
+				.password(d.getPassword())
+				.email(d.getEmail())
+				.address(d.getAddress())
+				.analysis(new ArrayList<Analysis>())
+				.telephone(d.getTelephone())
+				.build();
 		drepo.save(doctor);
 	}
 	

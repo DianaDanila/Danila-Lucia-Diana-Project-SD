@@ -43,6 +43,19 @@
            </tbody>
          </table>
 
+          <br>
+
+         <form th:action="@{/createanalysis}" method="get">
+             <input type="submit" value="Create Analysis"/>
+         </form>
+
+        <br>
+
+        <form th:action="@{/doctor/update}" method="get">
+            <input type="submit" value="Update"/>
+        </form>
+
+        <br>
 
         <form th:action="@{/home}" method="get">
             <input type="submit" value="Sign Out"/>

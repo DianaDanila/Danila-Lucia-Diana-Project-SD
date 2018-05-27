@@ -30,6 +30,10 @@ public class AnalysisDTO {
 		this.types = types;
 	}
 	
+	public AnalysisDTO() {
+		super();
+	}
+
 	public AnalysisDTO(Analysis a) {
 		this.name = a.getName();
 		this.result = a.getResult();

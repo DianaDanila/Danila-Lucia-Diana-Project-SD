@@ -29,9 +29,7 @@ public class LogInDController {
 	
 	@PostMapping(consumes = {"multipart/form-data"})
 	public ModelAndView login(@RequestPart("user") String name, @RequestPart("password") String pass) {
-		System.out.println("in metoda");
 		if(dbll.login(name, pass)) {
-			System.out.println("logged in");
 			ModelAndView modelAndView = new ModelAndView();
 	    	modelAndView.setViewName("logeddoctor");
 	    	List<DoctorDTO> doctorsList = dbll.findAll();

@@ -1,14 +1,17 @@
 package bll;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import bll.builder.PacientBuilder;
 import bll.builder.PacientDTOBuilder;
 import bll.dto.AnalysisDTO;
 import bll.dto.PacientDTO;
+import dal.model.Analysis;
 import dal.model.Pacient;
 import dal.repositories.PacientRepository;
 
@@ -52,7 +55,15 @@ public class PacientBLL {
 	}
 	
 	public void insert(PacientDTO p) {
-		Pacient pacient = prepo.findByName(p.getName());
+		//Pacient pacient = prepo.findByName(p.getName());
+		Pacient pacient = new PacientBuilder()
+				.name(p.getName())
+				.password(p.getPassword())
+				.email(p.getEmail())
+				.address(p.getAddress())
+				.analysis(new ArrayList<Analysis>())
+				.telephone(p.getTelephone())
+				.build();
 		prepo.save(pacient);
 	}
 	

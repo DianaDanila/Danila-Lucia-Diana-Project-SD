@@ -2,6 +2,15 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <div th:replace="header :: header-css"/>
+
+    <style>
+      body {
+        background-image:   url('https://preview.ibb.co/gmrCLo/doctor.jpg');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center right;
+      }
+    </style>
 </head>
 <body>
 
@@ -14,8 +23,18 @@
 
         <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
         <form th:action="@{/doctor/login}" method="get">
+            <input type="submit" value="Log In"/>
+        </form>
+
+        <br>
+
+      
+
+        <form th:action="@{/doctor/signin}" method="get">
             <input type="submit" value="Sign In"/>
         </form>
+
+        <br>
 
         <form th:action="@{/home}" method="get">
             <input type="submit" value="Sign Out"/>
