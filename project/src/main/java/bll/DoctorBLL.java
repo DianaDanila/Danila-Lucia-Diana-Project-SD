@@ -14,14 +14,16 @@ import bll.dto.DoctorDTO;
 import dal.model.Analysis;
 import dal.model.Doctor;
 import dal.repositories.DoctorRepository;
+import dal.repositories.RepositoryFactory;
 
 @Service
 public class DoctorBLL {
 
 	@Autowired // not null
-	private DoctorRepository drepo;
+	private RepositoryFactory rrepo;
 
 	public DoctorDTO getById(int id) {
+		DoctorRepository drepo = (DoctorRepository) rrepo.getRepository("Doctor");
 		Doctor d = drepo.findById(id).get();
 		DoctorDTO dto = new DoctorDTOBuilder()
 				.name(d.getName())
@@ -35,6 +37,7 @@ public class DoctorBLL {
 	}
 	
 	public DoctorDTO getByName(String name) {
+		DoctorRepository drepo = (DoctorRepository) rrepo.getRepository("Doctor");
 		Doctor d = drepo.findByName(name);
 		DoctorDTO dto = new DoctorDTOBuilder()
 				.name(d.getName())
@@ -48,6 +51,7 @@ public class DoctorBLL {
 	}
 
 	public boolean login(String name, String pass) {
+		DoctorRepository drepo = (DoctorRepository) rrepo.getRepository("Doctor");
 		Doctor d = drepo.findByNameAndPassword(name, pass);
 		if (d == null) {
 			return false;
@@ -56,6 +60,7 @@ public class DoctorBLL {
 	}
 	
 	public void insert(DoctorDTO d) {
+		DoctorRepository drepo = (DoctorRepository) rrepo.getRepository("Doctor");
 		//Doctor doctor = drepo.findByName(d.getName());
 		Doctor doctor = new DoctorBuilder()
 				.name(d.getName())
@@ -69,6 +74,7 @@ public class DoctorBLL {
 	}
 	
 	public void update(String name, DoctorDTO d) {
+		DoctorRepository drepo = (DoctorRepository) rrepo.getRepository("Doctor");
 		Doctor old = drepo.findByName(name);
 		old.setAddress(d.getAddress());
 		old.setEmail(d.getEmail());
@@ -78,11 +84,13 @@ public class DoctorBLL {
 	}
 	
 	public void delete(Doctor d) {
+		DoctorRepository drepo = (DoctorRepository) rrepo.getRepository("Doctor");
 		Doctor doctor = drepo.findByName(d.getName());
 		drepo.delete(doctor);
 	}
 	
 	public List<DoctorDTO> findAll(){
+		DoctorRepository drepo = (DoctorRepository) rrepo.getRepository("Doctor");
 		return drepo.findAll().stream().map(DoctorDTO::new).collect(Collectors.toList());
 	}
 }

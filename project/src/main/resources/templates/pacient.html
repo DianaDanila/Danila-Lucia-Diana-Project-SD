@@ -5,10 +5,10 @@
 
     <style>
       body {
-        background-image:   url('https://preview.ibb.co/gmrCLo/doctor.jpg');
+        background-image:   url('https://preview.ibb.co/gmrCLo/doctor.jpg'), url('https://preview.ibb.co/jpyuJJ/nurse.jpg');
         background-repeat: no-repeat;
         background-attachment: fixed;
-        background-position: center right;
+        background-position: center right, center left;
       }
     </style>
 </head>
@@ -21,24 +21,25 @@
     <div class="starter-template">
         <h1>User page</h1>
 
-        <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
-        <form th:action="@{/pacient/login}" method="get">
+        <h1 th:inline="text">Hello!</h1>
+        <br>
+        <form th:action="@{/pacient/login}" method="get" align="center">
             <input type="submit" value="Log In"/>
         </form>
+        <br>
 
-        <form th:action="@{/pacient/signin}" method="get">
+        <form th:action="@{/pacient/signin}" method="get" align="center">
             <input type="submit" value="Sign In"/>
         </form>
+        <br>
 
-        <form th:action="@{/home}" method="get">
+        <form th:action="@{/home}" method="get" align="center">
             <input type="submit" value="Sign Out"/>
         </form>
 
     </div>
 
 </div>
-<!-- /.container -->
-<div th:replace="footer :: footer"/>
 
 </body>
 </html>

@@ -45,7 +45,7 @@ public class SignPController {
 		pbll.insert(p);
 		
 		ModelAndView modelAndView = new ModelAndView();
-    	modelAndView.setViewName("home");;
+    	modelAndView.setViewName("home");
         return modelAndView;
 	}
 }

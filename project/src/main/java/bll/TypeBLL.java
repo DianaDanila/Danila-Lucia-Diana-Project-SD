@@ -9,16 +9,18 @@ import org.springframework.stereotype.Service;
 import bll.builder.TypeDTOBuilder;
 import bll.dto.TypeDTO;
 import dal.model.Type;
+import dal.repositories.RepositoryFactory;
 import dal.repositories.TypeRepository;
 
 @Service
 public class TypeBLL {
 
 	@Autowired // not null
-	private TypeRepository trepo;
+	private RepositoryFactory trepo;
 	
 	public TypeDTO getByName(String type) {
-		Type t = trepo.findByType(type);
+		TypeRepository f = (TypeRepository) trepo.getRepository("Type");
+		Type t = f.findByType(type);
 		TypeDTO tdto = new TypeDTOBuilder()
 				.type(t.getType())
 				.build();
@@ -26,6 +28,7 @@ public class TypeBLL {
 	}
 	
 	public List<TypeDTO> findAll(){
-		return trepo.findAll().stream().map(TypeDTO::new).collect(Collectors.toList());
+		TypeRepository f = (TypeRepository) trepo.getRepository("Type");
+		return f.findAll().stream().map(TypeDTO::new).collect(Collectors.toList());
 	}
 }

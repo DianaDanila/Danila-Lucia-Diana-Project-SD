@@ -5,10 +5,10 @@
 
     <style>
       body {
-        background-image:   url('https://preview.ibb.co/gmrCLo/doctor.jpg');
+        background-image:   url('https://preview.ibb.co/gmrCLo/doctor.jpg'), url('https://preview.ibb.co/jpyuJJ/nurse.jpg');
         background-repeat: no-repeat;
         background-attachment: fixed;
-        background-position: center right;
+        background-position: center right, center left;
       }
     </style>
 </head>
@@ -21,9 +21,10 @@
     <div class="starter-template">
         <h1>About page (No need login)</h1>
         <p>An application where pacients can see their analysis results and doctors can add them. Some of the analysis pacients can do here are:</p>
+        <br>
+        <br>
 
-
-        <table  border="1">
+        <table  border="1" align="center">
            <thead>
              <tr>
        		<th>NAME</th>
@@ -46,9 +47,6 @@
     </div>
 
 </div>
-<!-- /.container -->
-
-<div th:replace="footer :: footer"/>
 
 </body>
 </html>

@@ -9,7 +9,7 @@
           background-image:   url('https://preview.ibb.co/gmrCLo/doctor.jpg');
           background-repeat: no-repeat;
           background-attachment: fixed;
-          background-position: center right;
+          background-position: center bottom;
           background-size: 800px 800px;
         }
       </style>
@@ -18,9 +18,7 @@
 </head>
 <body>
 
-<div th:replace="header :: header"/>
-
-<div class="container">
+<div align="center">
 
         <h1>DCCCS ANALYSIS</h1>
         <h2>1.<a th:href="@{doctor}">Doctor page (Need Doctor Role)</a></h2>
@@ -29,7 +27,6 @@
 </div>
 <!-- /.container -->
 
-<div th:replace="footer :: footer"/>
 
 </body>
 </html>

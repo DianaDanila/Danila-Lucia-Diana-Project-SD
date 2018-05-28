@@ -14,12 +14,13 @@ import dal.model.Analysis;
 import dal.repositories.AnalysisRepository;
 import dal.repositories.DoctorRepository;
 import dal.repositories.PacientRepository;
+import dal.repositories.RepositoryFactory;
 import dal.repositories.TypeRepository;
 
 @Service
 public class AnalysisBLL {
 	
-	@Autowired // not null
+	/*@Autowired // not null
 	private AnalysisRepository arepo;
 	
 	@Autowired // not null
@@ -29,9 +30,12 @@ public class AnalysisBLL {
 	private PacientRepository prepo;
 	
 	@Autowired // not null
-	private TypeRepository trepo;
+	private TypeRepository trepo;*/
+	@Autowired // not null
+	private RepositoryFactory rrepo;
 	
 	public AnalysisDTO getById(int id) {
+		AnalysisRepository arepo = (AnalysisRepository) rrepo.getRepository("Analysis");
 		Analysis a = arepo.findById(id).get();
 		AnalysisDTO dto = new AnalysisDTOBuilder()
 				.name(a.getName())
@@ -45,6 +49,11 @@ public class AnalysisBLL {
 	
 	public void insert(AnalysisDTO a) {
 		//Analysis an = arepo.findById(a.getId()).get();;
+		AnalysisRepository arepo = (AnalysisRepository) rrepo.getRepository("Analysis");
+		PacientRepository prepo = (PacientRepository) rrepo.getRepository("Pacient");
+		DoctorRepository drepo = (DoctorRepository) rrepo.getRepository("Doctor");
+		TypeRepository trepo = (TypeRepository) rrepo.getRepository("Type");
+		
 		Analysis an = new AnalysisBuilder()
 				.name(a.getName())
 				.result(a.getResult())
@@ -72,6 +81,7 @@ public class AnalysisBLL {
 //	}
 	
 	public List<AnalysisDTO> findAll(){
+		AnalysisRepository arepo = (AnalysisRepository) rrepo.getRepository("Analysis");
 		return arepo.findAll().stream().map(AnalysisDTO::new).collect(Collectors.toList());
 	}
 }

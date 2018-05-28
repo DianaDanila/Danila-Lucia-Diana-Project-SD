@@ -7,22 +7,31 @@ import org.springframework.stereotype.Service;
 @Service
 public class RepositoryFactory {
 
+	
 	@Autowired
-	PacientRepository prepo;
-
+	AnalysisRepository arepo;
+	
 	@Autowired
 	DoctorRepository drepo;
-
-	public JpaRepository getRepository(String type) throws Exception {
-
+	
+	@Autowired
+	PacientRepository prepo;
+	
+	@Autowired
+	TypeRepository trepo;
+	
+	public JpaRepository getRepository(String type) {
 		switch (type) {
-		case "Pacient":
-			return prepo;
+		case "Analysis":
+			return arepo;
 		case "Doctor":
 			return drepo;
+		case "Pacient":
+			return prepo;
+		case "Type":
+			return trepo;
 		default:
-			throw new Exception("Unkown Repository Required");
-		}
-
+			throw new IllegalArgumentException("Invalid repository");
+	}
 	}
 }

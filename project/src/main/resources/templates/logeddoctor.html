@@ -2,6 +2,14 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <div th:replace="header :: header-css"/>
+    <style>
+      body {
+        background-image:   url('https://preview.ibb.co/gmrCLo/doctor.jpg'), url('https://preview.ibb.co/jpyuJJ/nurse.jpg');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center right, center left;
+      }
+    </style>
 </head>
 <body>
 
@@ -14,7 +22,7 @@
 
         <h1 th:inline="text">Hello Doctor!</h1>
 
-        <table  border="1">
+        <table  border="1" align="center">
            <thead>
              <tr>
        		<th>NAME</th>
@@ -45,28 +53,25 @@
 
           <br>
 
-         <form th:action="@{/createanalysis}" method="get">
+         <form th:action="@{/createanalysis}" method="get" align="center">
              <input type="submit" value="Create Analysis"/>
          </form>
 
         <br>
 
-        <form th:action="@{/doctor/update}" method="get">
+        <form th:action="@{/doctor/update}" method="get" align="center">
             <input type="submit" value="Update"/>
         </form>
 
         <br>
 
-        <form th:action="@{/home}" method="get">
+        <form th:action="@{/home}" method="get" align="center">
             <input type="submit" value="Sign Out"/>
         </form>
 
     </div>
 
 </div>
-<!-- /.container -->
-
-<div th:replace="footer :: footer"/>
 
 </body>
 </html>

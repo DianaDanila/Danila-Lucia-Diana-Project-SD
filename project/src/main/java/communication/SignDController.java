@@ -44,7 +44,7 @@ public class SignDController {
 		dbll.insert(d);
 		
 		ModelAndView modelAndView = new ModelAndView();
-    	modelAndView.setViewName("login1");;
+    	modelAndView.setViewName("home");
         return modelAndView;
 	}
 }

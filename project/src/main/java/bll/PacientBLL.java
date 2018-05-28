@@ -14,13 +14,15 @@ import bll.dto.PacientDTO;
 import dal.model.Analysis;
 import dal.model.Pacient;
 import dal.repositories.PacientRepository;
+import dal.repositories.RepositoryFactory;
 
 @Service
 public class PacientBLL {
 	@Autowired // not null
-	private PacientRepository prepo;
+	private RepositoryFactory rrepo;
 	
 	public PacientDTO getById(int id) {
+		PacientRepository prepo = (PacientRepository) rrepo.getRepository("Pacient");
 		Pacient p = prepo.findById(id).get();
 		PacientDTO pdto = new PacientDTOBuilder()
 				.name(p.getName())
@@ -34,6 +36,7 @@ public class PacientBLL {
 	}
 	
 	public PacientDTO getByName(String name) {
+		PacientRepository prepo = (PacientRepository) rrepo.getRepository("Pacient");
 		Pacient p = prepo.findByName(name);
 		PacientDTO pdto = new PacientDTOBuilder()
 				.name(p.getName())
@@ -47,6 +50,7 @@ public class PacientBLL {
 	}
 
 	public boolean login(String name, String pass) {
+		PacientRepository prepo = (PacientRepository) rrepo.getRepository("Pacient");
 		Pacient p = prepo.findByNameAndPassword(name, pass);
 		if (p == null) {
 			return false;
@@ -56,6 +60,7 @@ public class PacientBLL {
 	
 	public void insert(PacientDTO p) {
 		//Pacient pacient = prepo.findByName(p.getName());
+		PacientRepository prepo = (PacientRepository) rrepo.getRepository("Pacient");
 		Pacient pacient = new PacientBuilder()
 				.name(p.getName())
 				.password(p.getPassword())
@@ -68,6 +73,7 @@ public class PacientBLL {
 	}
 	
 	public void update(String name, PacientDTO p) {
+		PacientRepository prepo = (PacientRepository) rrepo.getRepository("Pacient");
 		Pacient old = prepo.findByName(name);
 		old.setAddress(p.getAddress());
 		old.setEmail(p.getEmail());
@@ -77,11 +83,13 @@ public class PacientBLL {
 	}
 	
 	public void delete(PacientDTO p) {
+		PacientRepository prepo = (PacientRepository) rrepo.getRepository("Pacient");
 		Pacient pacient = prepo.findByName(p.getName());
 		prepo.delete(pacient);
 	}
 	
 	public List<PacientDTO> findAll(){
+		PacientRepository prepo = (PacientRepository) rrepo.getRepository("Pacient");
 		return prepo.findAll().stream().map(PacientDTO::new).collect(Collectors.toList());
 	}
 }
